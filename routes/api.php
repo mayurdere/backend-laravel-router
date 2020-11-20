@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('/routers', 'RouterController');
 Route::get('/routerDelete/{router}', 'RouterController@softDelete');  
 Route::get('/diskspace', 'RouterController@diskSpace');  
+Route::get('/storagePath', 'RouterController@storagePath');  
 
 Route::group([
 

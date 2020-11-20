@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-use Model\Data;
+use Model\Router;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -41,7 +41,7 @@ class User extends Authenticatable implements JWTSubject
     public function data()
     {
         {
-            return $this->hasOne(Data::class);
+            return $this->hasOne(Router::class);
         }
     }
 

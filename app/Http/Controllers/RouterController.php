@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 use App\Model\Router;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ class RouterController extends Controller
 {   
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['index', 'show', 'diskSpace']]);
+        $this->middleware('JWT', ['except' => ['index', 'show', 'diskSpace', 'storagePath']]);
     }
     /**
      * Display a listing of the resource.
@@ -101,5 +103,12 @@ class RouterController extends Controller
         $dts = disk_total_space("C:");
         $result = array('disk_free_space' => $dfs, 'disk_total_space' => $dts ); 
         return json_encode($result);
+    }
+    public function storagePath(Router $router)
+    {
+        // $path = storage_path('test');
+        // $files = File::getRelativePathname($path);
+        $files = File::allFiles(public_path()); 
+        dd($files);
     }
 }
